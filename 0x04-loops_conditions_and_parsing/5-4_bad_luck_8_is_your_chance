@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Bash script that displays messages based on loop iteration
+
+# Initialize a counter
+i=1
+
+# Start a while loop
+while ((i <= 10))
+do
+    if [ $i -eq 4 ]; then
+        echo "bad luck"
+    elif [ $i -eq 8 ]; then
+        echo "good luck"
+    else
+        echo "Best School"
+    fi
+    
+    # Increment the counter
+    ((i++))
+done
