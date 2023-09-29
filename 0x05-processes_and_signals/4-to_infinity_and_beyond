@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# Bash script that prints forever
+
+#instantiate variable i
+i=0
+while (( i == 0)); do
+	echo "To infinity and beyond"
+done
