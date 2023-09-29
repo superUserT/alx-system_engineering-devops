@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Bash script for getting pid
+# Bash script for getting pid of the script
 
 
 echo $$ $BASHPID
