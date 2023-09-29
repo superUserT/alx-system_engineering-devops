@@ -3,4 +3,5 @@
 # shellcheck disable=SC2009
 
 
-
+# Find lines containing the word "bash" in the process list
+ps aux | grep bash | grep -v grep
