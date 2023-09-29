@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Bash script that stops prints to infifnity SIGTERM exc
+
+
+handle_sigterm() {
+	echo "I am invincible!!!"
+	exit 0
+}
+
+trap 'handle_sigterm' SIGTERM
+
+#instantiate variable i
+i=0
+while (( i == 0)); do
+	echo "To infinity and beyond"
+	sleep 2
+done
+
