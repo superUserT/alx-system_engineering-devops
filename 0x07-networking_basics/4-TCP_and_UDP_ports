@@ -1,3 +1,5 @@
 #!/usr/bin/env bash
 
-sudo sudo ss -tunlp -r
+sudo apt install net-tools
+
+netstat -lp
