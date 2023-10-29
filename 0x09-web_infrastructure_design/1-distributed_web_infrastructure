@@ -1,1 +1,40 @@
 link to image: https://imgur.com/koH47f2
+
+
+# Components and their Roles:
+
+    Server 1 (Web Server):
+        This server hosts the Nginx web server, which handles incoming HTTP requests.
+        It serves static content and forwards dynamic requests to the application server.
+
+    Server 2 (Application Server):
+        This server runs the application server responsible for processing dynamic content and executing the website's code.
+        It interacts with the database server for data retrieval and updates.
+
+    Server 3 (Load Balancer - HAproxy):
+        HAproxy acts as a load balancer, distributing incoming requests across multiple servers.
+        It enables high availability, load distribution, and improves the system's fault tolerance.
+
+    Application Files (Your Code Base):
+        This set of application files includes your website's codebase, such as HTML, CSS, JavaScript, and server-side code.
+
+    Database Server (MySQL):
+        MySQL serves as the database, storing and managing website data.
+        It facilitates data retrieval and updates, essential for the application's functionality.
+
+
+
+# Issues with this Infrastructure:
+
+    Single Points of Failure (SPOF):
+        The load balancer is a potential single point of failure. If it fails, traffic distribution will be disrupted.
+        Security and monitoring components are also single points of failure.
+
+    Security Issues:
+        No mention of a firewall or security measures to protect the servers and database.
+        Lack of HTTPS could expose data to potential security risks.
+
+    No Monitoring:
+        There's no monitoring solution mentioned to track the performance, health, and security of the infrastructure and to respond to issues proactively.
+
+To enhance this infrastructure, consider adding redundancy for the load balancer, implementing security measures (firewall, HTTPS), and incorporating monitoring tools to address potential issues and maintain system health.

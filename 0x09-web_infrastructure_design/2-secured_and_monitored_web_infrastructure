@@ -1,1 +1,33 @@
 link to image: https://imgur.com/nRZgDgv
+
+
+# Components and their Roles:
+
+    Server 1 (Web Server):
+        This server hosts the Nginx web server.
+        It receives incoming HTTP requests and forwards them to the load balancer.
+        It is also responsible for serving static content.
+
+    Server 2 (Application Server):
+        This server runs the application server, which processes dynamic content, executes the website's code, and interacts with the database.
+
+    Server 3 (Database Server - MySQL):
+        This server hosts the MySQL database, responsible for storing and managing website data.
+
+    Firewalls (x3):
+        Firewalls are added for security. They act as barriers to protect the servers and limit unauthorized access.
+        Each server has its own firewall to filter incoming and outgoing traffic based on defined rules.
+
+
+# Issues with this Infrastructure:
+
+    Terminating SSL at the Load Balancer:
+        Terminating SSL at the load balancer might be an issue because it exposes traffic in an unencrypted form between the load balancer and the web server. Ideally, SSL should be terminated at the web server, ensuring end-to-end encryption.
+
+    One MySQL Server Capable of Accepting Writes:
+        Having only one MySQL server capable of accepting writes is a single point of failure. If the database server fails, write operations are disrupted. A more resilient setup would involve database replication and failover mechanisms.
+
+    Servers with All the Same Components:
+        Having servers with identical components for the web server, application server, and database can lead to inefficiency, as each server may not utilize its resources optimally. Consider a more distributed and scalable architecture that allocates resources based on the specific needs of each server.
+
+To improve this infrastructure, consider implementing end-to-end SSL encryption, database replication for fault tolerance, and optimizing server configurations for their specific roles.

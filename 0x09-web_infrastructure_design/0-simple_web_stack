@@ -1,1 +1,47 @@
 link to image: https://imgur.com/yFLgr3V
+
+
+# Components and their Roles:
+
+    Server:
+        A server is a computer that hosts and serves resources to other computers, in this case, a website. It listens for incoming requests and responds accordingly.
+        In our case, it's a single server responsible for hosting the entire web application.
+
+    Domain Name:
+        The domain name (www.foobar.com) is a human-friendly way to identify a website. It's a string that maps to an IP address.
+        It is essential for users to access your website by typing a memorable name rather than an IP address.
+
+    DNS Record:
+        The "www" in www.foobar.com represents a DNS (Domain Name System) record called a "subdomain."
+        It specifies that the subdomain "www" is associated with the domain foobar.com and should point to your server's IP address (e.g., 8.8.8.8).
+
+    Web Server (Nginx):
+        Nginx is a web server that handles incoming HTTP requests and serves static content, performs load balancing, and can also act as a reverse proxy.
+        It receives requests from users' web browsers and routes them to the application server.
+
+    Application Server:
+        The application server is responsible for processing dynamic content and executing the website's code.
+        It can run server-side code, interact with the database, and generate dynamic HTML content.
+        It receives requests from the web server and sends responses back to the web server.
+
+    Application Files (Your Code Base):
+        This includes your website's codebase, such as HTML, CSS, JavaScript, and any server-side code (e.g., PHP, Python, Node.js) that is required for the website to function.
+
+    Database (MySQL):
+        The database stores and manages the website's data. It can be used to store user information, content, and other data that needs to persist.
+        The application server communicates with the database to retrieve and update data when required.
+
+
+
+# Issues with this Infrastructure:
+
+    Single Point of Failure (SPOF):
+        This infrastructure has a single server, which means if the server fails, the entire website goes down. There's no redundancy or failover mechanism.
+
+    Downtime During Maintenance:
+        When performing maintenance or deploying new code, the web server needs to be restarted. This can result in downtime, disrupting user access.
+
+    Limited Scalability:
+        With only one server, it cannot efficiently handle a sudden increase in traffic. Scaling horizontally by adding more servers is necessary to ensure high availability and performance under heavy loads.
+
+To address these issues, you can consider implementing load balancing, redundancy, and a scalable infrastructure, which would involve multiple servers, database replication, and more advanced configurations
