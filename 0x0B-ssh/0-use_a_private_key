@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-
+# A script that connects to my server using a ssh keypair
 server="100.25.148.58"
 user="ubuntu"
 
