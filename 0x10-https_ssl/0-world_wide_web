@@ -5,7 +5,7 @@ get_record_info() {
     local subdomain=$2
     local record_type=$3
 
-    dig_output=$(dig ${subdomain}.${domain} | awk -v record_type="${record_type}" '/ANSWER SECTION:/ {getline; print $1, $4, record_type}')
+    dig_output=$(dig "${subdomain}"."${domain}" | awk -v record_type="${record_type}" '/ANSWER SECTION:/ {getline; print $1, $4, record_type}')
     echo "${dig_output}"
 }
 
