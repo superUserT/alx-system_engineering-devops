@@ -1,0 +1,32 @@
+#!/bin/bash
+
+get_record_info() {
+    local domain=$1
+    local subdomain=$2
+    local record_type=$3
+
+    dig_output=$(dig ${subdomain}.${domain} | awk -v record_type="${record_type}" '/ANSWER SECTION:/ {getline; print $1, $4, record_type}')
+    echo "${dig_output}"
+}
+
+display_subdomain_info() {
+    local domain=$1
+
+    get_record_info "${domain}" "www" "A"
+    get_record_info "${domain}" "lb-01" "A"
+    get_record_info "${domain}" "web-01" "A"
+    get_record_info "${domain}" "web-02" "A"
+}
+
+main() {
+    local domain=$1
+    local subdomain=$2
+
+    if [ -z "${subdomain}" ]; then
+        display_subdomain_info "${domain}"
+    else
+        get_record_info "${domain}" "${subdomain}" "A"
+    fi
+}
+
+main "$@"
