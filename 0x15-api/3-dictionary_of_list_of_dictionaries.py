@@ -1,42 +1,35 @@
 #!/usr/bin/python3
+"""Export data in JSON format."""
 import json
 import requests
 from sys import argv
 
 
-def list_of_dictionary():
+def dict_to_json():
+    url = "https://jsonplaceholder.typicode.com/todos"
+    users_url = "https://jsonplaceholder.typicode.com/users"
 
-    base_url = "https://jsonplaceholder.typicode.com"
+    todos = requests.get(url).json()
+    users = requests.get(users_url).json()
 
-    if len(argv) != 2:
-        print("Usage: python3 3-dictionary_of_list_of_dictionaries.py")
-        exit(1)
+    tasks_by_user = {}
 
-    employee_id = argv[1]
-
-    user_response = requests.get(f"{base_url}/users/{employee_id}")
-    user_data = user_response.json()
-    username = user_data.get("username")
-
-    tasks_response = requests.get(f"{base_url}/todos?userId={employee_id}")
-    tasks_data = tasks_response.json()
-
-    user_tasks = {"username": username, "tasks": []}
-
-    for task in tasks_data:
+    for todo in todos:
+        user_id = todo["userId"]
         task_info = {
-            "task": task["title"],
-            "completed": task["completed"],
-            "username": username,
+            "username": [user["username"] for user in users if user["id"] == user_id][0],
+            "task": todo["title"],
+            "completed": todo["completed"],
         }
-        user_tasks["tasks"].append(task_info)
+        if user_id in tasks_by_user:
+            tasks_by_user[user_id].append(task_info)
+        else:
+            tasks_by_user[user_id] = [task_info]
 
-    filename = f"{employee_id}.json"
-    with open(filename, "w") as json_file:
-        json.dump({employee_id: user_tasks["tasks"]}, json_file)
 
-    print(f"Tasks for user {employee_id} exported to {filename}")
+    with open("todo_all_employees.json", "w") as json_file:
+        json.dump(tasks_by_user, json_file)
 
 
 if __name__ == "__main__":
-    list_of_dictionary()
+    dict_to_json()
